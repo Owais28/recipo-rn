@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Button,
   Platform,
+  SafeAreaView,
   StyleSheet,
   Text,
   View
@@ -9,7 +10,8 @@ import {
 import React from 'react';
 import { useRouter, useNavigation, Link } from 'expo-router';
 import { Box, ScrollView, VStack } from 'native-base';
-import ProjectCard from '../components/ProjectCard/ProjectCard';
+import ProjectCard from '../components/Card/Project/ProjectCard';
+import StyledFlexHorizontal from '../components/Container/StyledFlexHorizontal';
 
 type Props = {};
 
@@ -20,19 +22,19 @@ const Index = (props: Props) => {
   const router = useRouter();
 
   return (
-    <ScrollView style={[styles.container, styles.flex]}>
-      <VStack space={4}>
-        {/* <View
+    <ScrollView style={[styles.flex]}>
+      {/* <VStack space={4} overflow="scroll"> */}
+      {/* <View
       // contentContainerStyle={[styles.container, styles.flex]}
     > */}
 
-        <Text style={styles.heading}>React Native{'\n'}App &copy;</Text>
-        <VStack space={4}>
-          {[...new Array(20)].map((item, index) => (
-            <ProjectCard key={index} />
-          ))}
-        </VStack>
-      </VStack>
+      <Text style={[styles.heading, styles.container]}>TaskCard</Text>
+      <StyledFlexHorizontal>
+        {[...new Array(20)].map((item, index) => (
+          <ProjectCard key={index} />
+        ))}
+      </StyledFlexHorizontal>
+      {/* </VStack> */}
     </ScrollView>
     // </View>
   );
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
     // alignItems: 'stretch',
-    gap: 10
+    gap: 10,
+    overflow: 'scroll'
   },
   button: {
     ...Platform.select({
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
     })
   },
   heading: {
-    fontSize: 50,
+    fontSize: 20,
     fontWeight: 'bold'
   }
 });
