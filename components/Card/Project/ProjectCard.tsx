@@ -11,6 +11,8 @@ import { useRouter } from 'expo-router';
 import ProjectImage from './ProjectImage';
 import ProjectTitleAndPriority from './ProjectTitleAndPriority';
 import ProjectDescription from './ProjectDescription';
+import { beginAsyncEvent } from 'react-native/Libraries/Performance/Systrace';
+import ProjectProgress from './ProjectProgress';
 
 type Props = {};
 
@@ -33,9 +35,10 @@ const ProjectCard = (props: Props) => {
         // alignItems={'center'}
         overflow="hidden"
         rounded="md"
-        padding={3}
+        padding={4}
         _dark={{
-          borderColor: 'coolGray.500'
+          borderColor: 'coolGray.500',
+          bgColor: 'coolGray.100'
         }}
         _light={{
           borderColor: 'coolGray.200',
@@ -45,6 +48,7 @@ const ProjectCard = (props: Props) => {
         <ProjectImage />
         <ProjectTitleAndPriority title="Demo Project Title" priority={2} />
         <ProjectDescription />
+        <ProjectProgress />
       </VStack>
     </Pressable>
     // </Center>

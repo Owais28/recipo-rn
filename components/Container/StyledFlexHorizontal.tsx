@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: 'scroll',
     padding: 15,
-    gap: 10,
+    gap: 15,
     width: '100%'
   }
 });

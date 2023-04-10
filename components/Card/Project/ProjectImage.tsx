@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { Box, Heading, Image } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Box, Heading, Image, Skeleton } from 'native-base';
 
 type Props = {
   uri?: string;
@@ -11,16 +11,28 @@ const defaultProps = {
 };
 
 const ProjectImage = ({ uri = defaultProps.uri }: Props) => {
+  const [isLoaded, setLoading] = useState<true | false>(false);
+
+  const disableLoading = () => {
+    setTimeout(() => setLoading(true), 4000);
+  };
+
+  useEffect(() => {
+    disableLoading();
+  }, []);
+
   return (
-    <Box width={'100%'} rounded="md" overflow={'hidden'}>
-      <Image
-        shadow={2}
-        source={{ uri }}
-        alt="Alternate Text"
-        width={'100%'}
-        height={200}
-      />
-    </Box>
+    <Skeleton height={200} rounded="md" isLoaded={isLoaded}>
+      <Box width={'100%'} rounded="md" overflow={'hidden'}>
+        <Image
+          // shadow={2}
+          source={{ uri }}
+          alt="Alternate Text"
+          width={'100%'}
+          height={200}
+        />
+      </Box>
+    </Skeleton>
   );
 };
 

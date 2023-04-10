@@ -1,17 +1,9 @@
-import {
-  ActivityIndicator,
-  Button,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { useRouter, useNavigation, Link } from 'expo-router';
-import { Box, ScrollView, VStack } from 'native-base';
+import { ScrollView, VStack } from 'native-base';
 import ProjectCard from '../components/Card/Project/ProjectCard';
-import StyledFlexHorizontal from '../components/Container/StyledFlexHorizontal';
+import FlexSectionWithLink from '../components/Section/FlexSectionWithLink';
 
 type Props = {};
 
@@ -22,20 +14,39 @@ const Index = (props: Props) => {
   const router = useRouter();
 
   return (
-    <ScrollView style={[styles.flex]}>
-      {/* <VStack space={4} overflow="scroll"> */}
-      {/* <View
+    <>
+      <ScrollView style={[styles.flex, styles.container]}>
+        <VStack space={5} mt={2} mb={2}>
+          {/* <VStack space={4} overflow="scroll"> */}
+          {/* <View
       // contentContainerStyle={[styles.container, styles.flex]}
     > */}
 
-      <Text style={[styles.heading, styles.container]}>TaskCard</Text>
-      <StyledFlexHorizontal>
-        {[...new Array(20)].map((item, index) => (
-          <ProjectCard key={index} />
-        ))}
-      </StyledFlexHorizontal>
-      {/* </VStack> */}
-    </ScrollView>
+          <FlexSectionWithLink
+            title="Recent Projects"
+            linkText="See all projects"
+          >
+            {/* <StyledFlexHorizontal> */}
+            {[...new Array(20)].map((item, index) => (
+              <ProjectCard key={index} />
+            ))}
+            {/* </StyledFlexHorizontal> */}
+          </FlexSectionWithLink>
+          <FlexSectionWithLink
+            title="Recent Projects"
+            linkText="See all projects"
+          >
+            {/* <StyledFlexHorizontal> */}
+            {[...new Array(20)].map((item, index) => (
+              <ProjectCard key={index} />
+            ))}
+            {/* </StyledFlexHorizontal> */}
+          </FlexSectionWithLink>
+          {/* </VStack> */}
+        </VStack>
+      </ScrollView>
+      {/* <SafeAre */}
+    </>
     // </View>
   );
 };
@@ -44,7 +55,8 @@ export default Index;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    // paddingTop: 15,
+    // paddingBottom: 15
   },
   flex: {
     flex: 1,

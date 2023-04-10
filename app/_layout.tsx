@@ -57,7 +57,7 @@ function RootLayoutNav() {
             <Stack.Screen
               name="index"
               initialParams={{ name: 'index in (tabs)' }}
-              options={{ headerShown: true, headerTitle: 'Home' }}
+              options={{ headerShown: true, headerTitle: 'TaskCard' }}
             />
           </Stack>
         </NativeBaseProvider>
