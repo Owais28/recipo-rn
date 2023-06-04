@@ -8,7 +8,7 @@ const Index = (props: Props) => {
   return (
     <View>
       <Stack.Screen options={{ headerShown: true, headerTitle: 'Projects' }} />
-      <Text>index </Text>
+      <Text>index</Text>
     </View>
   );
 };

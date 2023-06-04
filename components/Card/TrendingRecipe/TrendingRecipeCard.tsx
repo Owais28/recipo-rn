@@ -1,9 +1,9 @@
 // import { Image } from 'react-native';
-import { Box, Flex, Image, Pressable, Skeleton, Text } from 'native-base';
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { Box, Flex, Image, Pressable, Text } from 'native-base';
+import { PropsWithChildren, useCallback } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
-import { SplashScreen } from 'expo-router';
+import { SplashScreen, useRouter } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
 
 type Props = {};
@@ -34,29 +34,31 @@ export const imgUrl =
 const TrendingRecipeCard = (props: Props) => {
   // const [isLoaded, setIsLoaded] = useState(false);
 
-  const [fontsLoaded] = useFonts({
-    'Rubik-Regular': require('../../../assets/fonts/Rubik-Regular.ttf'),
-    'Rubik-Bold': require('../../../assets/fonts/Rubik-Bold.ttf'),
-    'Rubik-SemiBold': require('../../../assets/fonts/Rubik-SemiBold.ttf'),
-    'Rubik-Medium': require('../../../assets/fonts/Rubik-Medium.ttf')
-  });
+  const router = useRouter();
+
+  // const [fontsLoaded] = useFonts({
+  //   'Rubik-Regular': require('../../../assets/fonts/Rubik-Regular.ttf'),
+  //   'Rubik-Bold': require('../../../assets/fonts/Rubik-Bold.ttf'),
+  //   'Rubik-SemiBold': require('../../../assets/fonts/Rubik-SemiBold.ttf'),
+  //   'Rubik-Medium': require('../../../assets/fonts/Rubik-Medium.ttf')
+  // });
 
   // useEffect(() => {
   //   setTimeout(() => setIsLoaded(true), 3000);
   // }, []);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   return (
-    <Pressable onPress={(e) => console.log('Trending recipe clicked')}>
+    <Pressable onPress={(e) => router.push('/view-recipe')}>
       {/* <Skeleton height={350} isLoaded={isLoaded}> */}
       <StyledCardContainer>
         {/* Image */}
@@ -114,25 +116,25 @@ const TrendingRecipeCard = (props: Props) => {
                 // justifyContent={''}
                 mt={3}
               >
-                <Flex
+                {/* <Flex
                   direction='row'
                   alignItems={'center'}
                   mr={4}
                   // bgColor={'trueGray.600'}
                   // px={2}
                   // borderRadius={'sm'}
-                >
-                  {/* <Skeleton> */}
-                  <AntDesign name='star' size={12} color={'gold'} />
-                  <Text color={'warmGray.100'} fontFamily={'Rubik'} ml={1.5} fontSize={10}>
-                    4.5{' '}
-                    <Text ml={1} fontSize={9} color={'warmGray.300'}>
-                      {'('}
-                      {200} reviews{')'}
-                    </Text>
-                  </Text>
-                  {/* </Skeleton> */}
-                </Flex>
+                > */}
+                {/* <Skeleton> */}
+                {/* <AntDesign name='star' size={12} color={'gold'} /> */}
+                {/* <Text color={'warmGray.100'} fontFamily={'Rubik'} ml={1.5} fontSize={10}> */}
+                {/* 4.5{' '} */}
+                {/* <Text ml={1} fontSize={9} color={'warmGray.300'}> */}
+                {/* {'('} */}
+                {/* {200} reviews{')'} */}
+                {/* </Text> */}
+                {/* </Text> */}
+                {/* </Skeleton> */}
+                {/* </Flex> */}
                 <Flex direction='row' alignItems={'center'}>
                   <AntDesign name='clockcircleo' size={11} color='#ccc' />
                   <Text color={'warmGray.300'} fontFamily={'Rubik'} ml={1.5} fontSize={10}>

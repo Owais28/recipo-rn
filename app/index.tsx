@@ -1,16 +1,13 @@
 import { Platform, StyleSheet } from 'react-native';
-// import React from 'react';
-import { useRouter, useNavigation, SplashScreen } from 'expo-router';
-import { Box, Flex, ScrollView, Stack, Text, VStack } from 'native-base';
-// import ProjectCard from '../components/Card/TrendingRecipe/';
-// import FlexSectionWithLink from '../components/Section/FlexSectionWithLink';
-import TrendingRecipeCard from '../components/Card/TrendingRecipe/TrendingRecipeCard';
-// import ProjectCard from '../components/Card/Project/ProjectCard';
+import { useRouter, useNavigation, SplashScreen, Stack } from 'expo-router';
+import { Box, Flex, Input, ScrollView, VStack } from 'native-base';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import PopularRecipeCard from '../components/Card/PopularRecipe/PopularRecipeCard';
-// import { BackdropBlur, Blur, Canvas, Circle, Fill, Group, Paint } from '@shopify/react-native-skia';
-// import { LinearGradient } from 'react-native-svg';
+import { AntDesign } from '@expo/vector-icons';
+import TrendingSection from '../components/Section/Home/TrendingSection';
+import PopularRecipeSection from '../components/Section/Home/PopularRecipeSection';
+import CategoriesSection from '../components/Section/Home/CategoriesSection';
+import SafeAreaBox from '../components/Container/SafeAreaBox';
 
 type Props = {};
 
@@ -37,61 +34,43 @@ const Index = (props: Props) => {
   }
 
   return (
-    <Box safeArea bgColor={'#E9E9E9'}>
+    <SafeAreaBox>
       <ScrollView>
-        {/* <SafeAreaView /> */}
-        {/* <StatusBar networkActivityIndicatorVisible /> */}
-        <VStack mb={2} mt={50} style={{ gap: 15 }}>
-          <Stack>
-            <Text
+        {/* <Stack.Screen options={{ headerShown: false, statusBarTranslucent: false }} /> */}
+        <VStack mb={2} style={{ gap: 15 }}>
+          <Box px={3} height={50}>
+            <Flex
+              flexDir={'row'}
+              bgColor={'trueGray.300'}
               pl={3}
-              fontFamily={'YesevaOne-Regular'}
-              color={'rgb(71,85,75)'}
-              fontSize={'2xl'}
-              mb={2}
-              lineHeight={'xs'}
+              borderRadius={'lg'}
+              borderColor='trueGray.200'
+              borderWidth={1}
             >
-              Trending {''}
-              {'\n'}
-              Today
-            </Text>
-            <ScrollView horizontal mt={2}>
-              <Flex flexDir={'row'} style={{ gap: 15 }} px={3}>
-                {[...new Array(10)].map((item, index) => (
-                  <TrendingRecipeCard key={index} />
-                ))}
-              </Flex>
-            </ScrollView>
-          </Stack>
-
-          <Stack>
-            <Text
-              pl={3}
-              fontFamily={'YesevaOne-Regular'}
-              color={'rgb(71,85,75)'}
-              fontSize={'lg'}
-              mb={2}
-              lineHeight={'xs'}
-            >
-              Popular {''}
-              {/* {'\n'} */}
-              Recipes
-            </Text>
-
-            {/*  */}
-
-            {/*  */}
-            <ScrollView horizontal mt={2}>
-              <Flex flexDir={'row'} style={{ gap: 15 }} px={3}>
-                {[...new Array(10)].map((item, index) => (
-                  <PopularRecipeCard key={index} />
-                ))}
-              </Flex>
-            </ScrollView>
-          </Stack>
+              <VStack mr={1} alignItems={'center'} justifyContent={'center'}>
+                <AntDesign name='search1' size={24} color='rgb(71,85,75)' />
+              </VStack>
+              <Box height={'100%'} flex={1}>
+                <Input
+                  height={'100%'}
+                  colorScheme={'black'}
+                  fontFamily={'Rubik'}
+                  // outlineStyle={'none'}
+                  // outlineColor={'gold'}
+                  focusOutlineColor={'trueGray.300'}
+                  bgColor={'trueGray.300'}
+                />
+              </Box>
+            </Flex>
+          </Box>
+          <TrendingSection />
+          <CategoriesSection />
+          <PopularRecipeSection />
+          <TrendingSection />
+          <PopularRecipeSection />
         </VStack>
       </ScrollView>
-    </Box>
+    </SafeAreaBox>
   );
 };
 

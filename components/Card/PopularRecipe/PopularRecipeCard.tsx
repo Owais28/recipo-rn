@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Avatar, Box, Flex, HStack, Image, Text, VStack } from 'native-base';
+import { Avatar, Box, Divider, Flex, HStack, Image, Text, VStack } from 'native-base';
 import { imgUrl } from '../TrendingRecipe/TrendingRecipeCard';
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
@@ -10,23 +10,6 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 type Props = {};
 
 const PopularRecipeCard = (props: Props) => {
-  const [fontsLoaded] = useFonts({
-    // 'Rubik-Regular': require('../../../assets/fonts/Rubik-Regular.ttf'),
-    // 'Rubik-Bold': require('../../../assets/fonts/Rubik-Bold.ttf'),
-    // 'Rubik-SemiBold': require('../../../assets/fonts/Rubik-SemiBold.ttf'),
-    'Rubik-Medium': require('../../../assets/fonts/Rubik-Medium.ttf')
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   const imgUri =
     'https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNoZWZ8ZW58MHx8MHx8fDA%3D&w=1000&q=80';
 
@@ -71,6 +54,7 @@ const PopularRecipeCard = (props: Props) => {
           </HStack>
         </HStack>
 
+        <Divider bgColor={'trueGray.100'} />
         {/* "More Details" */}
         <Box
           display={'flex'}
@@ -88,8 +72,10 @@ const PopularRecipeCard = (props: Props) => {
             // borderRadius={'sm'}
           >
             {/* <Skeleton> */}
+            {/* <Flex alignItems={'center'} justifyContent={'center'}> */}
             <AntDesign name='star' size={12} color={'gold'} />
-            <Text color={'rgb(71,85,75)'} fontFamily={'Rubik'} ml={1.5} fontSize={10}>
+            {/* </Flex> */}
+            <Text color={'rgb(71,85,75)'} fontFamily={'Rubik-Medium'} ml={1.5} fontSize={10}>
               4.5{' '}
               <Text ml={1} fontSize={9} color={'gray.400'}>
                 {'('}
@@ -98,9 +84,17 @@ const PopularRecipeCard = (props: Props) => {
             </Text>
             {/* </Skeleton> */}
           </Flex>
-          <Flex direction='row' alignItems={'center'}>
+          <Flex direction='row' alignItems={'center'} justifyItems={'center'}>
+            {/* <Box
+              display={'flex'}
+              flexDir={'column'}
+              alignItems={'center'}
+              justifyContent={'center'}
+              py={2}
+            > */}
             <AntDesign name='clockcircleo' size={11} color={'#a1a1aa'} />
-            <Text color={'gray.400'} fontFamily={'Rubik'} ml={1.5} fontSize={10}>
+            {/* </Box> */}
+            <Text color={'rgb(71,85,75)'} fontFamily={'Rubik'} ml={1.5} fontSize={10}>
               20 min
             </Text>
           </Flex>
