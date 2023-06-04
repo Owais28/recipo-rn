@@ -1,10 +1,4 @@
-import {
-  GestureResponderEvent,
-  Pressable,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import { Button, Center, Skeleton, VStack } from 'native-base';
 import { useRouter } from 'expo-router';
@@ -29,12 +23,12 @@ const ProjectCard = (props: Props) => {
     <Pressable onPress={handlePress}>
       <VStack
         w={320}
-        maxW="400"
+        maxW='400'
         // borderWidth="1"
         space={2}
         // alignItems={'center'}
-        overflow="hidden"
-        rounded="md"
+        overflow='hidden'
+        rounded='md'
         padding={4}
         _dark={{
           borderColor: 'coolGray.500',
@@ -46,7 +40,7 @@ const ProjectCard = (props: Props) => {
         }}
       >
         <ProjectImage />
-        <ProjectTitleAndPriority title="Demo Project Title" priority={2} />
+        <ProjectTitleAndPriority title='Demo Project Title' priority={2} />
         <ProjectDescription />
         <ProjectProgress />
       </VStack>
