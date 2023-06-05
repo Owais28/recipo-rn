@@ -8,6 +8,7 @@ import TrendingSection from '../components/Section/Home/TrendingSection';
 import PopularRecipeSection from '../components/Section/Home/PopularRecipeSection';
 import CategoriesSection from '../components/Section/Home/CategoriesSection';
 import SafeAreaBox from '../components/Container/SafeAreaBox';
+import StyledSearchbar from '../components/searchbar/StyledSearchbar';
 
 type Props = {};
 
@@ -35,34 +36,10 @@ const Index = (props: Props) => {
 
   return (
     <SafeAreaBox>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* <Stack.Screen options={{ headerShown: false, statusBarTranslucent: false }} /> */}
         <VStack mb={2} style={{ gap: 15 }}>
-          <Box px={3} height={50}>
-            <Flex
-              flexDir={'row'}
-              bgColor={'trueGray.300'}
-              pl={3}
-              borderRadius={'lg'}
-              borderColor='trueGray.200'
-              borderWidth={1}
-            >
-              <VStack mr={1} alignItems={'center'} justifyContent={'center'}>
-                <AntDesign name='search1' size={24} color='rgb(71,85,75)' />
-              </VStack>
-              <Box height={'100%'} flex={1}>
-                <Input
-                  height={'100%'}
-                  colorScheme={'black'}
-                  fontFamily={'Rubik'}
-                  // outlineStyle={'none'}
-                  // outlineColor={'gold'}
-                  focusOutlineColor={'trueGray.300'}
-                  bgColor={'trueGray.300'}
-                />
-              </Box>
-            </Flex>
-          </Box>
+          <StyledSearchbar />
           <TrendingSection />
           <CategoriesSection />
           <PopularRecipeSection />

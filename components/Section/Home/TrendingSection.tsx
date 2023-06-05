@@ -1,31 +1,42 @@
 import React from 'react';
-import { Stack, Text, ScrollView, Flex } from 'native-base';
+import { Stack, FlatList, HStack } from 'native-base';
 import TrendingRecipeCard from '../../Card/TrendingRecipe/TrendingRecipeCard';
+import StyledTextTrending from '../../Text/StyledTextTrending';
 
 type Props = {};
 
-const TrendingSection = (props: Props) => {
+const TrendingSection = () => {
   return (
     <Stack>
-      <Text
+      <HStack>
+        <StyledTextTrending>
+          Trending {''}
+          {'\n'}
+          Today
+        </StyledTextTrending>
+      </HStack>
+      <FlatList
+        mt={2}
+        horizontal
+        data={[
+          { key: 'Devin' },
+          { key: 'Dan' },
+          { key: 'Dominic' },
+          { key: 'Jackson' },
+          { key: 'James' },
+          { key: 'Joel' },
+          { key: 'John' },
+          { key: 'Jillian' },
+          { key: 'Jimmy' },
+          { key: 'Julie' }
+        ]}
+        renderItem={({ item }) => <TrendingRecipeCard key={item.key} />}
+        // flexDir={'row'}
+        // style={{ gap: 15 }}
         pl={3}
-        fontFamily={'YesevaOne-Regular'}
-        color={'rgb(71,85,75)'}
-        fontSize={'2xl'}
-        mb={2}
-        lineHeight={'xs'}
-      >
-        Trending {''}
-        {'\n'}
-        Today
-      </Text>
-      <ScrollView horizontal mt={2}>
-        <Flex flexDir={'row'} style={{ gap: 15 }} px={3}>
-          {[...new Array(10)].map((item, index) => (
-            <TrendingRecipeCard key={index} />
-          ))}
-        </Flex>
-      </ScrollView>
+        contentContainerStyle={{ gap: 14, paddingRight: 26 }}
+        showsHorizontalScrollIndicator={false}
+      />
     </Stack>
   );
 };
