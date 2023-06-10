@@ -2,7 +2,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Avatar, Box, Flex, HStack, Input, Text, VStack } from 'native-base';
 import React from 'react';
 import Colors from '../../constants/Colors';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 // import Animated, { SlideInLeft, SlideInUp } from 'react-native-reanimated';
 
 type Props = {}
