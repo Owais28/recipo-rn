@@ -232,9 +232,17 @@ export default function ViewRecipePageIndex() {
           py={4}
           style={{ gap: 3 }}>
           {/* <Animated.ScrollView style={{ height: 300, overflow: 'scroll' }}> */}
-          <RubikMediumText color={'gray.700'} fontSize={15}>
-            Ingredients
-          </RubikMediumText>
+          <HStack alignItems={'center'} justifyContent={'space-between'}>
+            <RubikMediumText color={'gray.700'} fontSize={15}>
+              Ingredients
+            </RubikMediumText>
+            <RubikMediumText color={'gray.700'} fontSize={15}>
+              Reviews
+            </RubikMediumText>
+            <RubikMediumText color={'gray.700'} fontSize={15}>
+              Nutrients
+            </RubikMediumText>
+          </HStack>
           <IngredientsList
             ingredients={[
               { itemName: 'one', amount: '10' },
@@ -305,14 +313,16 @@ export default function ViewRecipePageIndex() {
         bottom={0}
         pb={3}
         pt={3}>
-        <Button
-          shadow={'2'}
-          _text={{ fontFamily: 'Rubik-Medium' }}
-          width={'full'}
-          // colorScheme={'orange'}
-          bgColor={Colors.primary1}>
-          Let's Cooking
-        </Button>
+        <Skeleton isLoaded={isLoaded}>
+          <Button
+            shadow={'2'}
+            _text={{ fontFamily: 'Rubik-Medium' }}
+            width={'full'}
+            // colorScheme={'orange'}
+            bgColor={Colors.primary1}>
+            Let's Cooking
+          </Button>
+        </Skeleton>
       </Box>
     </Animated.View>
   )
