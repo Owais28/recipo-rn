@@ -2,12 +2,13 @@ import { AntDesign } from '@expo/vector-icons'
 import { Avatar, Box, Flex, HStack, Input, Text, VStack } from 'native-base'
 import React from 'react'
 import Colors from '../../constants/Colors'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 // import Animated, { SlideInLeft, SlideInUp } from 'react-native-reanimated';
 
 type Props = {}
 
 const StyledSearchbar = ({}: Props) => {
+  const router =useRouter();
   return (
     <>
       <HStack
@@ -53,6 +54,7 @@ const StyledSearchbar = ({}: Props) => {
               height={'100%'}
               colorScheme={'black'}
               fontFamily={'Rubik'}
+              onPressIn={()=>router.push("/search")}
               // outlineStyle={'none'}
               // outlineColor={'gold'}
               focusOutlineColor={'trueGray.300'}
