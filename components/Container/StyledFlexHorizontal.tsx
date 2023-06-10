@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { PropsWithChildren } from 'react';
-import { Box, FlatList, Flex, HStack, ScrollView } from 'native-base';
+import { StyleSheet } from 'react-native'
+import React, { PropsWithChildren } from 'react'
+import { Flex, ScrollView } from 'native-base'
 
-type Props = {};
+type Props = {}
 
 const StyledFlexHorizontal = ({ children }: PropsWithChildren<Props>) => {
   return (
     <ScrollView horizontal>
       <Flex style={styles.flexContainer}>{children}</Flex>
     </ScrollView>
-  );
-};
+  )
+}
 
-export default StyledFlexHorizontal;
+export default StyledFlexHorizontal
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
     padding: 15,
     gap: 15,
-    width: '100%'
-  }
-});
+    width: '100%',
+  },
+})

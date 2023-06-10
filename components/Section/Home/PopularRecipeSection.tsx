@@ -1,7 +1,7 @@
-import { FlatList, Flex, ScrollView, Stack, Text, View } from 'native-base';
-import PopularRecipeCard from '../../Card/PopularRecipe/PopularRecipeCard';
+import { FlatList, Stack, Text } from 'native-base'
+import PopularRecipeCard from '../../Card/PopularRecipe/PopularRecipeCard'
 
-type Props = {};
+type Props = {}
 
 export default function PopularRecipeSection({}: Props) {
   return (
@@ -12,8 +12,7 @@ export default function PopularRecipeSection({}: Props) {
         color={'rgb(71,85,75)'}
         fontSize={'lg'}
         mb={2}
-        lineHeight={'xs'}
-      >
+        lineHeight={'xs'}>
         Popular {''}
         {/* {'\n'} */}
         Recipes
@@ -33,7 +32,7 @@ export default function PopularRecipeSection({}: Props) {
           { key: 'John' },
           { key: 'Jillian' },
           { key: 'Jimmy' },
-          { key: 'Julie' }
+          { key: 'Julie' },
         ]}
         renderItem={({ item }) => <PopularRecipeCard key={item.key} />}
         // flexDir={'row'}
@@ -48,5 +47,5 @@ export default function PopularRecipeSection({}: Props) {
           ))} */}
       {/* </ScrollView> */}
     </Stack>
-  );
+  )
 }

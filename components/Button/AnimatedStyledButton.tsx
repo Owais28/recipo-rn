@@ -2,25 +2,25 @@ import Animated, {
   useSharedValue,
   withTiming,
   useAnimatedStyle,
-  Easing
-} from 'react-native-reanimated';
-import { View, Button } from 'react-native';
-import React from 'react';
-import AnimatedView from '../animated/AnimatedView';
+  Easing,
+} from 'react-native-reanimated'
+import { View, Button } from 'react-native'
+import React from 'react'
+import AnimatedView from '../animated/AnimatedView'
 
-export default function AnimatedStyleButton(props: any) {
-  const randomWidth = useSharedValue(10);
+export default function AnimatedStyleButton() {
+  const randomWidth = useSharedValue(10)
 
   const config = {
     duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1)
-  };
+    easing: Easing.bezier(0.5, 0.01, 0, 1),
+  }
 
   const style = useAnimatedStyle(() => {
     return {
-      width: withTiming(randomWidth.value, config)
-    };
-  });
+      width: withTiming(randomWidth.value, config),
+    }
+  })
 
   return (
     <View
@@ -28,19 +28,21 @@ export default function AnimatedStyleButton(props: any) {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
-      }}
-    >
+        flexDirection: 'column',
+      }}>
       <Animated.View
-        style={[{ width: 100, height: 80, backgroundColor: 'black', margin: 30 }, style]}
+        style={[
+          { width: 100, height: 80, backgroundColor: 'black', margin: 30 },
+          style,
+        ]}
       />
       <Button
-        title='toggle'
+        title="toggle"
         onPress={() => {
-          randomWidth.value = Math.random() * 350;
+          randomWidth.value = Math.random() * 350
         }}
       />
       <AnimatedView />
     </View>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import { Box, Flex, ScrollView, Stack, Text } from 'native-base';
+import { Box, Flex, ScrollView, Stack, Text } from 'native-base'
 
-type Props = {};
+type Props = {}
 
 const CategoryBox = () => {
   return (
-    <Box height={50} borderRadius='full' overflow={'hidden'}>
+    <Box height={50} borderRadius="full" overflow={'hidden'}>
       {/* <Image
         source={{
           uri: imgUrl,
@@ -20,8 +20,7 @@ const CategoryBox = () => {
         alignItems={'center'}
         justifyContent={'center'}
         bgColor={'#A3B09E'}
-        height={'100%'}
-      >
+        height={'100%'}>
         <Text color={'#E9E9E9'} fontFamily={'Rubik-Medium'}>
           Breakfast
         </Text>
@@ -29,8 +28,8 @@ const CategoryBox = () => {
       {/* </LinearGradient> */}
       {/* </Box> */}
     </Box>
-  );
-};
+  )
+}
 
 export default function CategoriesSection({}: Props) {
   return (
@@ -41,20 +40,19 @@ export default function CategoriesSection({}: Props) {
         color={'rgb(71,85,75)'}
         fontSize={'lg'}
         mb={2}
-        lineHeight={'xs'}
-      >
+        lineHeight={'xs'}>
         Explore By Categories {''}
         {/* {'\n'} */}
         {/* Recipes */}
       </Text>
 
-      <ScrollView horizontal mt={2}>
+      <ScrollView horizontal mt={2} showsHorizontalScrollIndicator={false}>
         <Flex flexDir={'row'} style={{ gap: 15 }} px={3}>
-          {[...new Array(10)].map((item, index) => (
+          {[...new Array(10)].map((_item, index) => (
             <CategoryBox key={index} />
           ))}
         </Flex>
       </ScrollView>
     </Stack>
-  );
+  )
 }

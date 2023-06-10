@@ -22,8 +22,7 @@
       },
       "android": {
         "buildType": "app-bundle",
-        "image": "latest",
-        "compileSdkVersion": 45
+        "image": "latest"
       }
     }
   },

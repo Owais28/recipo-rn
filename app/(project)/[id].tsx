@@ -1,27 +1,27 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { Stack, usePathname, useSearchParams } from 'expo-router';
+import { ScrollView, Text } from 'react-native'
+import React from 'react'
+import { Stack, useSearchParams } from 'expo-router'
 
-type Props = {};
+// type Props = {};
 
-const Project = (props: Props) => {
-  const params = useSearchParams();
-  console.log(params);
+const Project = () => {
+  const params = useSearchParams()
+  console.log(params)
 
   return (
     <ScrollView>
       <Stack.Screen
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle: 'Project',
-          title: 'Project'
+          title: 'Project',
         }}
       />
       <Text>Id : {params.id}</Text>
     </ScrollView>
-  );
-};
+  )
+}
 
-export default Project;
+export default Project
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({})
