@@ -18,10 +18,14 @@ import Colors from '../../constants/Colors'
 import RubikText from '../../components/Typography/TextRubik'
 import RubikMediumText from '../../components/Typography/TextRubikMedium'
 import { Alert, Dimensions, Share } from 'react-native'
-import IngredientsList from '../../components/Section/RecipoInfo/IngredientsList'
+
+import TabViewExample from '../../components/TabViewExample'
 
 export default function ViewRecipePageIndex() {
   const [isLoaded, setIsLoaded] = useState(false)
+  // const [index, setIndex] = React.useState(0)
+
+  // const animatedIndexValue = new Animated.Value(1)
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 3000)
@@ -52,6 +56,7 @@ export default function ViewRecipePageIndex() {
 
   return (
     <Animated.View style={{ height: SCREEN_HEIGHT, flex: 1 }}>
+      {/*<StatusBar hidden={true} />*/}
       <Animated.ScrollView
         scrollsToTop
         style={{ flex: 1 }}
@@ -104,7 +109,7 @@ export default function ViewRecipePageIndex() {
               _line={{ rounded: 'xs', height: 5 }}
               isLoaded={isLoaded}>
               <Text fontSize={'lg'} noOfLines={2} fontFamily={'Rubik-SemiBold'}>
-                Egg Avacado Sandwich
+                Egg Sansd s sds
               </Text>
             </Skeleton.Text>
           </Box>
@@ -151,7 +156,6 @@ export default function ViewRecipePageIndex() {
                       color={'gray.700'}>
                       Owais Athars
                     </RubikMediumText>
-                    {/* <MaterialCommunityIcons name='check-decagram' size={24} color='black' /> */}
                     <VStack alignItems={'center'}>
                       <MaterialIcons
                         name="verified"
@@ -233,31 +237,32 @@ export default function ViewRecipePageIndex() {
           style={{ gap: 3 }}>
           {/* <Animated.ScrollView style={{ height: 300, overflow: 'scroll' }}> */}
           <HStack alignItems={'center'} justifyContent={'space-between'}>
-            <RubikMediumText color={'gray.700'} fontSize={15}>
+            <RubikMediumText color={'gray.700'} fontSize={12}>
               Ingredients
             </RubikMediumText>
-            <RubikMediumText color={'gray.700'} fontSize={15}>
+
+            <RubikMediumText color={'gray.700'} fontSize={12}>
               Reviews
             </RubikMediumText>
-            <RubikMediumText color={'gray.700'} fontSize={15}>
+
+            <RubikMediumText color={'gray.700'} fontSize={12}>
               Nutrients
             </RubikMediumText>
           </HStack>
-          <IngredientsList
-            ingredients={[
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-              { itemName: 'one', amount: '10' },
-            ]}
-          />
-          {/* <ScrollView> */}
-          {/* </ScrollView> */}
+          {/*<IngredientsList*/}
+          {/*  ingredients={[*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*    { itemName: 'one', amount: '10' },*/}
+          {/*  ]}*/}
+          {/*/>*/}
+          {/*<TabViewExample />*/}
 
           {/* Review */}
           {/* <ScrollView
@@ -302,7 +307,7 @@ export default function ViewRecipePageIndex() {
           {/* ); */}
           {/* })} */}
         </VStack>
-
+        <TabViewExample />
         {/* </Animated.ScrollView> */}
         {/* <Tab.Item title={'dds'} /> */}
       </Animated.ScrollView>

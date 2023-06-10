@@ -3,6 +3,8 @@ import { Stack, FlatList, HStack, Skeleton, ScrollView } from 'native-base'
 import TrendingRecipeCard from '../../Card/TrendingRecipe/TrendingRecipeCard'
 import StyledTextTrending from '../../Text/StyledTextTrending'
 import { Dimensions } from 'react-native'
+import { Link } from 'expo-router'
+import RubikText from '../../Typography/TextRubik'
 
 type Props = {}
 
@@ -22,13 +24,15 @@ const TrendingSection = ({}: Props) => {
             {/* {'\n'}
           Today */}
           </StyledTextTrending>
-          {/* <Button style={{}} borderColor={Colors.primary1} borderWidth={1} bgColor={'transparent'}>
-          <AntDesign name='arrowright' color={Colors.primary1} size={15} />
-        </Button> */}
+          <Link href={'trending'}>
+            <RubikText color={'trueGray.400'} fontSize={'xs'}>
+              View all
+            </RubikText>
+          </Link>
         </HStack>
         <FlatList
           // py={50}
-          mt={2}
+          mt={2.5}
           horizontal
           data={[
             { key: 'Devin' },

@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Divider, HStack, Skeleton, VStack } from 'native-base'
 import RubikText from '../../Typography/TextRubik'
+import { Dimensions } from 'react-native'
 
 const StyledSkeleton = () => (
   <Skeleton.Text
@@ -29,8 +30,14 @@ const IngredientsList = ({ ingredients }: Props) => {
       </VStack>
     )
   }
+
   return (
-    <VStack style={{ gap: 10 }} divider={<Divider bgColor={'trueGray.200'} />}>
+    <VStack
+      style={{ gap: 10 }}
+      flexShrink={0}
+      width={Dimensions.get('window').width}
+      bgColor={'#E9E9E9'}
+      divider={<Divider bgColor={'trueGray.200'} />}>
       {ingredients.map((item, k) => (
         <ListItem itemName={item.itemName} amount={item.amount} key={k} />
       ))}
@@ -44,7 +51,7 @@ type ItemProps = {
 }
 const ListItem: FC<ItemProps> = ({ itemName, amount }) => {
   return (
-    <HStack alignItems={'center'} justifyContent={'space-between'}>
+    <HStack alignItems={'center'} justifyContent={'space-between'} px={3}>
       <RubikText>{itemName}</RubikText>
       <RubikText>{amount}</RubikText>
     </HStack>
