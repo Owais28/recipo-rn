@@ -11,14 +11,15 @@ import RubikMediumText from '../../Typography/TextRubikMedium'
 import { LinearGradient } from 'expo-linear-gradient'
 import { imgUrl } from '../../Card/TrendingRecipe/TrendingRecipeCard'
 import RubikText from '../../Typography/TextRubik'
-import { Link } from 'expo-router'
+import { useRouter } from 'expo-router'
 import React from 'react'
+import { TouchableOpacity } from 'react-native'
 
 type Props = {}
 
-const CategoryBox = () => {
+export const CategoryBox = () => {
   return (
-    <Box height={200} borderRadius="md" width={150} overflow={'hidden'}>
+    <Box height={200} borderRadius="md" width={130} overflow={'hidden'}>
       <Image
         source={{
           uri: imgUrl,
@@ -26,15 +27,17 @@ const CategoryBox = () => {
         height={'100%'}
         resizeMethod={'resize'}
         alt="category-image"
-        width={150}
+        width={130}
       />
       <Box position={'absolute'} bottom={0} width={'100%'}>
         <LinearGradient
           colors={['transparent', 'black']}
           style={{ paddingTop: 50 }}>
-          <Box bottom={0} py={5} width={150}>
+          <Box bottom={0} py={5} width={130}>
             <VStack px={5} justifyContent={'center'} height={'100%'}>
-              <RubikMediumText color={'white'}>breakfast</RubikMediumText>
+              <RubikMediumText color={'white'} fontSize={'xs'}>
+                breakfast
+              </RubikMediumText>
               <RubikText
                 color={'warmGray.300'}
                 fontSize={'2xs'}
@@ -50,6 +53,7 @@ const CategoryBox = () => {
 }
 
 export default function CategoriesSection({}: Props) {
+  const router = useRouter()
   return (
     <Stack>
       <HStack px={3} alignItems={'center'} justifyContent={'space-between'}>
@@ -62,15 +66,17 @@ export default function CategoriesSection({}: Props) {
           {/* {'\n'} */}
           {/* Recipes */}
         </RubikMediumText>
-        <Link href={'view-chefs'}>
+        {/*<Link href={'categories'}>*/}
+        <TouchableOpacity onPress={(event) => router.push('categories')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>
-        </Link>
+        </TouchableOpacity>
+        {/*</Link>*/}
       </HStack>
 
       <ScrollView horizontal mt={2.5} showsHorizontalScrollIndicator={false}>
-        <Flex flexDir={'row'} style={{ gap: 15 }} px={3}>
+        <Flex flexDir={'row'} style={{ gap: 13 }} px={3}>
           {[...new Array(10)].map((_item, index) => (
             <CategoryBox key={index} />
           ))}

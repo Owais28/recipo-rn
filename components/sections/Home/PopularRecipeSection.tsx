@@ -1,13 +1,15 @@
 import { FlatList, HStack, Stack } from 'native-base'
 import PopularRecipeCard from '../../Card/PopularRecipe/PopularRecipeCard'
 import RubikMediumText from '../../Typography/TextRubikMedium'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import RubikText from '../../Typography/TextRubik'
 import React from 'react'
+import { TouchableOpacity } from 'react-native'
 
 type Props = {}
 
 export default function PopularRecipeSection({}: Props) {
+  const router = useRouter()
   return (
     <Stack>
       <HStack px={3} alignItems={'center'} justifyContent={'space-between'}>
@@ -20,11 +22,13 @@ export default function PopularRecipeSection({}: Props) {
           {/* {'\n'} */}
           {/* Recipes */}
         </RubikMediumText>
-        <Link href={'view-chefs'}>
+        <TouchableOpacity onPress={(event) => router.push('view-chefs')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>
-        </Link>
+        </TouchableOpacity>
+        {/*<Link href={'view-chefs'}>*/}
+        {/*</Link>*/}
       </HStack>
 
       {/* <ScrollView horizontal mt={2}> */}

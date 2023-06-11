@@ -3,7 +3,8 @@ import { Avatar, Box, FlatList, HStack, Stack, VStack } from 'native-base'
 import RubikMediumText from '../../Typography/TextRubikMedium'
 import RubikText from '../../Typography/TextRubik'
 import { CHEFS } from '../../../constants/data'
-import { Link } from 'expo-router'
+import { useRouter } from 'expo-router'
+import { TouchableOpacity } from 'react-native'
 
 export type ChefProps = {
   imgUri: string
@@ -42,9 +43,11 @@ export type ChefsSectionProps = {
   chefs: ChefProps[]
 }
 const ChefsSection: FC<ChefsSectionProps> = () => {
+  const router = useRouter()
+
   return (
     <Stack>
-      {/*Section top*/}
+      {/*sections top*/}
       <HStack px={3} alignItems={'center'} justifyContent={'space-between'}>
         <RubikMediumText
           color={'trueGray.800'}
@@ -53,11 +56,13 @@ const ChefsSection: FC<ChefsSectionProps> = () => {
           lineHeight={'xs'}>
           Popular Cooks
         </RubikMediumText>
-        <Link href={'view-chefs'}>
+        {/*<Link href={'view-chefs'}>*/}
+        <TouchableOpacity onPress={(event) => router.push('view-chefs')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>
-        </Link>
+        </TouchableOpacity>
+        {/*</Link>*/}
       </HStack>
 
       {/* <ScrollView horizontal mt={2}> */}

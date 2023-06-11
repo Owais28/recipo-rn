@@ -1,5 +1,5 @@
 import { Animated } from 'react-native'
-import IngredientsList from './Section/RecipoInfo/IngredientsList'
+import IngredientsList from './sections/RecipoInfo/IngredientsList'
 import React, { useRef } from 'react'
 
 const data = [

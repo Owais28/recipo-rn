@@ -1,14 +1,7 @@
 import { SplashScreen, useNavigation } from 'expo-router'
-import { VStack } from 'native-base'
 import { useFonts } from 'expo-font'
-import { useCallback } from 'react'
-import TrendingSection from '../components/Section/Home/TrendingSection'
-import PopularRecipeSection from '../components/Section/Home/PopularRecipeSection'
-import CategoriesSection from '../components/Section/Home/CategoriesSection'
-import SafeAreaBox from '../components/Container/SafeAreaBox'
-import ChefsSection from '../components/Section/Home/ChefsSection'
-import AppHeaderSection from '../components/Section/Home/AppHeaderSection'
-import { Animated } from 'react-native'
+import React, { useCallback } from 'react'
+import RootComponent from '../components/RootComponent'
 // type Props = {}
 
 const Index = () => {
@@ -19,8 +12,13 @@ const Index = () => {
     'YesevaOne-Regular': require('../assets/fonts/YesevaOne-Regular.ttf'),
   })
 
+  // useEffect(() => {
+  //   setTimeout(() => setContentLoaded(true), 3000)
+  // }, [])
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
+      // setTimeout(() => setContentLoaded(true), 3000)
       await SplashScreen.hideAsync()
     }
   }, [fontsLoaded])
@@ -29,25 +27,7 @@ const Index = () => {
     return null
   }
 
-  // const [isContentLoaded, setContentLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   setTimeout(() => setContentLoaded(true), 300);
-  // }, []);
-
-  return (
-    <SafeAreaBox>
-      <Animated.ScrollView showsVerticalScrollIndicator={false}>
-        <VStack mb={2} safeAreaBottom style={{ gap: 15 }}>
-          <AppHeaderSection />
-          <TrendingSection />
-          <ChefsSection />
-          <PopularRecipeSection />
-          <CategoriesSection />
-        </VStack>
-      </Animated.ScrollView>
-    </SafeAreaBox>
-  )
+  return <RootComponent />
 }
 
 export default Index
