@@ -1,26 +1,35 @@
-import { FlatList, Stack, Text } from 'native-base'
+import { FlatList, HStack, Stack } from 'native-base'
 import PopularRecipeCard from '../../Card/PopularRecipe/PopularRecipeCard'
+import RubikMediumText from '../../Typography/TextRubikMedium'
+import { Link } from 'expo-router'
+import RubikText from '../../Typography/TextRubik'
+import React from 'react'
 
 type Props = {}
 
 export default function PopularRecipeSection({}: Props) {
   return (
     <Stack>
-      <Text
-        pl={3}
-        fontFamily={'YesevaOne-Regular'}
-        color={'rgb(71,85,75)'}
-        fontSize={'lg'}
-        mb={2}
-        lineHeight={'xs'}>
-        Popular {''}
-        {/* {'\n'} */}
-        Recipes
-      </Text>
+      <HStack px={3} alignItems={'center'} justifyContent={'space-between'}>
+        <RubikMediumText
+          color={'trueGray.800'}
+          fontSize={'sm'}
+          mb={2}
+          lineHeight={'xs'}>
+          Popular Recipes {''}
+          {/* {'\n'} */}
+          {/* Recipes */}
+        </RubikMediumText>
+        <Link href={'view-chefs'}>
+          <RubikText color={'trueGray.400'} fontSize={'xs'}>
+            View all
+          </RubikText>
+        </Link>
+      </HStack>
 
       {/* <ScrollView horizontal mt={2}> */}
       <FlatList
-        mt={2}
+        mt={2.5}
         horizontal
         data={[
           { key: 'Devin' },
@@ -35,17 +44,10 @@ export default function PopularRecipeSection({}: Props) {
           { key: 'Julie' },
         ]}
         renderItem={({ item }) => <PopularRecipeCard key={item.key} />}
-        // flexDir={'row'}
-        // ItemSeparatorComponent={() => <View width={15} />}
         showsHorizontalScrollIndicator={false}
-        // numColumns={10}
         px={3}
         contentContainerStyle={{ gap: 14, paddingRight: 26 }}
       />
-      {/* {[...new Array(10)].map((item, index) => (
-            
-          ))} */}
-      {/* </ScrollView> */}
     </Stack>
   )
 }
