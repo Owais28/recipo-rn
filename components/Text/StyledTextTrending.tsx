@@ -1,6 +1,5 @@
-import { Text } from 'native-base'
 import React, { PropsWithChildren } from 'react'
-import Colors from '../../constants/Colors'
+import RubikMediumText from '../Typography/TextRubikMedium'
 // import type {Text}
 type Props = {
   props?: object
@@ -10,14 +9,14 @@ const StyledTextTrending: React.FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   return (
-    <Text
-      fontFamily={'YesevaOne-Regular'}
-      color={Colors.primary1}
-      fontSize={'2xl'}
+    <RubikMediumText
+      color={'trueGray.800'}
+      fontSize={'lg'}
       mb={2}
+      letterSpacing={'md'}
       lineHeight={'xs'}>
       {children}
-    </Text>
+    </RubikMediumText>
   )
 }
 

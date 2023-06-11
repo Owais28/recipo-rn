@@ -1,4 +1,3 @@
-// import { Image } from 'react-native';
 import { Box, Flex, Image, Pressable, Text } from 'native-base'
 import { PropsWithChildren } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -88,7 +87,7 @@ const TrendingRecipeCard = ({}: Props) => {
           // }}
           width={'100%'}>
           <LinearGradient
-            colors={['transparent', '#212823']}
+            colors={['transparent', 'black']}
             style={{ paddingTop: 70 }}>
             <Box px={5} pb={5}>
               {/* <BlurView intensity={200} style={{ padding: 10, borderRadius: 5 }}> */}

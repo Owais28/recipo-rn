@@ -1,9 +1,10 @@
-import { AntDesign } from '@expo/vector-icons';
-import { Avatar, Box, Flex, HStack, Input, Text, VStack } from 'native-base';
-import React from 'react';
-import Colors from '../../constants/Colors';
-import { Link, useRouter } from 'expo-router';
-// import Animated, { SlideInLeft, SlideInUp } from 'react-native-reanimated';
+import { AntDesign } from '@expo/vector-icons'
+import { Avatar, Box, Flex, HStack, Input,Text, VStack } from 'native-base'
+import React from 'react'
+import Colors from '../../constants/Colors'
+import { Link,useRouter } from 'expo-router'
+import RubikMediumText from '../Typography/TextRubikMedium'
+import RubikText from '../Typography/TextRubik'
 
 type Props = {}
 
@@ -20,15 +21,12 @@ const StyledSearchbar = ({}: Props) => {
         // position={'sticky'}
       >
         <VStack>
-          <Text
-            fontFamily={'Rubik-Medium'}
-            fontSize={'md'}
-            color={Colors.primary1}>
+          <RubikMediumText fontSize={'md'} color={Colors.primary1}>
             Hello Owais 👋
-          </Text>
-          <Text fontFamily={'Rubik'} fontSize={'xs'} color={'gray.400'}>
+          </RubikMediumText>
+          <RubikText fontSize={'xs'} color={'gray.400'}>
             Glad you back to cook!
-          </Text>
+          </RubikText>
         </VStack>
         <Link href={'profile'}>
           <Avatar

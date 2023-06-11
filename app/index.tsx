@@ -1,13 +1,7 @@
 import { SplashScreen, useNavigation } from 'expo-router'
-import { ScrollView, VStack } from 'native-base'
 import { useFonts } from 'expo-font'
-import { useCallback } from 'react'
-import TrendingSection from '../components/Section/Home/TrendingSection'
-import PopularRecipeSection from '../components/Section/Home/PopularRecipeSection'
-import CategoriesSection from '../components/Section/Home/CategoriesSection'
-import SafeAreaBox from '../components/Container/SafeAreaBox'
-import StyledSearchbar from '../components/searchbar/StyledSearchbar'
-
+import React, { useCallback } from 'react'
+import RootComponent from '../components/RootComponent'
 // type Props = {}
 
 const Index = () => {
@@ -18,8 +12,13 @@ const Index = () => {
     'YesevaOne-Regular': require('../assets/fonts/YesevaOne-Regular.ttf'),
   })
 
+  // useEffect(() => {
+  //   setTimeout(() => setContentLoaded(true), 3000)
+  // }, [])
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
+      // setTimeout(() => setContentLoaded(true), 3000)
       await SplashScreen.hideAsync()
     }
   }, [fontsLoaded])
@@ -28,27 +27,7 @@ const Index = () => {
     return null
   }
 
-  // const [isContentLoaded, setContentLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   setTimeout(() => setContentLoaded(true), 300);
-  // }, []);
-
-  return (
-    <SafeAreaBox>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <Stack.Screen options={{ headerShown: false, statusBarTranslucent: false }} /> */}
-        <VStack mb={2} style={{ gap: 15 }}>
-          <StyledSearchbar />
-          <TrendingSection />
-          <CategoriesSection />
-          <PopularRecipeSection />
-          <TrendingSection />
-          <PopularRecipeSection />
-        </VStack>
-      </ScrollView>
-    </SafeAreaBox>
-  )
+  return <RootComponent />
 }
 
 export default Index

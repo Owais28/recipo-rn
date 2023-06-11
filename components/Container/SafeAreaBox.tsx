@@ -1,14 +1,19 @@
-import { Box } from 'native-base';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react'
+import { Box, IBoxProps } from 'native-base'
+import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'
 
 type Props = {
-  props?: object;
-};
+  props?: object
+}
 
-export default function SafeAreaBox({ props, children }: PropsWithChildren<Props>) {
+export default function SafeAreaBox({
+  props,
+  style,
+  children,
+}: PropsWithChildren<Props & IBoxProps & InterfaceBoxProps>) {
   return (
-    <Box {...props} safeArea bgColor={'#E9E9E9'}>
+    <Box {...props} style={style} bgColor={'blueGray.50'} safeArea>
       {children}
     </Box>
-  );
+  )
 }
