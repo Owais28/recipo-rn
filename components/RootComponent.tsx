@@ -10,6 +10,8 @@ import TrendingSection from './sections/Home/TrendingSection'
 import ChefsSection from './sections/Home/ChefsSection'
 import PopularRecipeSection from './sections/Home/PopularRecipeSection'
 import CategoriesSection from './sections/Home/CategoriesSection'
+import HorizontalPopularRecipeCard from './Card/HorizontalPopularRecipeCard'
+import RecommendedRecipeSection from './sections/Home/RecommendedRecipeSection'
 
 const RootComponent = () => {
   const [isContentLoaded, setContentLoaded] = useState<boolean>(false)
@@ -38,10 +40,11 @@ const RootComponent = () => {
       <Animated.ScrollView showsVerticalScrollIndicator={false}>
         <VStack mb={2} safeAreaBottom style={{ gap: 15 }}>
           <AppHeaderSection />
+          <CategoriesSection />
           <TrendingSection />
           <ChefsSection />
           <PopularRecipeSection />
-          <CategoriesSection />
+          <RecommendedRecipeSection />
         </VStack>
       </Animated.ScrollView>
     </SafeAreaBox>

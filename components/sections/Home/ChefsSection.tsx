@@ -57,7 +57,7 @@ const ChefsSection: FC<ChefsSectionProps> = () => {
           Popular Cooks
         </RubikMediumText>
         {/*<Link href={'view-chefs'}>*/}
-        <TouchableOpacity onPress={(event) => router.push('view-chefs')}>
+        <TouchableOpacity onPress={(_event) => router.push('view-chefs')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>

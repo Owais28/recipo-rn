@@ -20,33 +20,33 @@ const PopularRecipeCard = () => {
 
   return (
     // wrapper
-    <Link href={'/view-recipe'}>
+    <Box
+      width={250}
+      position="relative"
+      bgColor={'white'}
+      borderRadius={'md'}
+      overflow={'hidden'}>
+      {/* image */}
       <Box
-        width={250}
-        position="relative"
-        bgColor={'white'}
-        borderRadius={'md'}
-        overflow={'hidden'}>
-        {/* image */}
-        <Box
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          position={'absolute'}
-          right={3}
-          top={3}
-          bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
-          w={9}
-          borderRadius={'full'}
-          height={9}
-          zIndex={2}>
-          <AntDesign name="hearto" size={15} color="white" />
-        </Box>
-        <Box overflow="hidden" height={180}>
-          <Image src={imgUrl} height={180} alt="recipe-image" />
-        </Box>
+        display={'flex'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        position={'absolute'}
+        right={3}
+        top={3}
+        bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
+        w={9}
+        borderRadius={'full'}
+        height={9}
+        zIndex={2}>
+        <AntDesign name="hearto" size={15} color="white" />
+      </Box>
+      <Box overflow="hidden" height={180}>
+        <Image src={imgUrl} height={180} alt="recipe-image" />
+      </Box>
 
-        {/* Details */}
+      {/* Details */}
+      <Link href={'/view-recipe'}>
         <VStack style={{ gap: 3.5 }} py={3} px={3}>
           <Text
             noOfLines={1}
@@ -125,8 +125,8 @@ const PopularRecipeCard = () => {
             </Flex>
           </Box>
         </VStack>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   )
 }
 

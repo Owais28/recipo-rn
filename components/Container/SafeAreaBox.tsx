@@ -12,7 +12,7 @@ export default function SafeAreaBox({
   children,
 }: PropsWithChildren<Props & IBoxProps & InterfaceBoxProps>) {
   return (
-    <Box {...props} style={style} bgColor={'blueGray.50'} safeArea>
+    <Box {...props} style={style} bgColor={'blueGray.50'} flex={1} safeArea>
       {children}
     </Box>
   )

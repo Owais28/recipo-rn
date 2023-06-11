@@ -2,14 +2,12 @@ import React from 'react'
 import { FlatList, HStack, Stack } from 'native-base'
 import TrendingRecipeCard from '../../Card/TrendingRecipe/TrendingRecipeCard'
 import StyledTextTrending from '../../Text/StyledTextTrending'
-import { Link, useRouter } from 'expo-router'
-import RubikText from '../../Typography/TextRubik'
-import { TouchableOpacity } from 'react-native'
+// import { useRouter } from 'expo-router'
 
 type Props = {}
 
 const TrendingSection = ({}: Props) => {
-  const router = useRouter()
+  // const router = useRouter()
 
   return (
     <Stack>
@@ -19,13 +17,13 @@ const TrendingSection = ({}: Props) => {
           {/* {'\n'}
           Today */}
         </StyledTextTrending>
-        <TouchableOpacity onPress={(event) => router.push('trending')}>
-          {/*<Link href={'trending'}>*/}
-          <RubikText color={'trueGray.400'} fontSize={'xs'}>
-            View all
-          </RubikText>
-          {/*</Link>*/}
-        </TouchableOpacity>
+        {/*<TouchableOpacity onPress={(event) => router.push('trending')}>*/}
+        {/*  /!*<Link href={'trending'}>*!/*/}
+        {/*  <RubikText color={'trueGray.400'} fontSize={'xs'}>*/}
+        {/*    View all*/}
+        {/*  </RubikText>*/}
+        {/*  /!*</Link>*!/*/}
+        {/*</TouchableOpacity>*/}
       </HStack>
       <FlatList
         // py={50}

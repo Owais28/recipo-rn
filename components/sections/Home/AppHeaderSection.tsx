@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native'
 const AppHeaderSection = () => {
   return (
     <Box
-      px={4}
+      px={3}
       pt={2}
       pb={1}
       // borderBottomWidth={1}

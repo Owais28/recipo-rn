@@ -67,7 +67,7 @@ export default function CategoriesSection({}: Props) {
           {/* Recipes */}
         </RubikMediumText>
         {/*<Link href={'categories'}>*/}
-        <TouchableOpacity onPress={(event) => router.push('categories')}>
+        <TouchableOpacity onPress={(_event) => router.push('categories')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>

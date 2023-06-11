@@ -1,7 +1,7 @@
 import { FlatList, HStack, Stack } from 'native-base'
 import PopularRecipeCard from '../../Card/PopularRecipe/PopularRecipeCard'
 import RubikMediumText from '../../Typography/TextRubikMedium'
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import RubikText from '../../Typography/TextRubik'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
@@ -22,7 +22,7 @@ export default function PopularRecipeSection({}: Props) {
           {/* {'\n'} */}
           {/* Recipes */}
         </RubikMediumText>
-        <TouchableOpacity onPress={(event) => router.push('view-chefs')}>
+        <TouchableOpacity onPress={(_event) => router.push('view-chefs')}>
           <RubikText color={'trueGray.400'} fontSize={'xs'}>
             View all
           </RubikText>

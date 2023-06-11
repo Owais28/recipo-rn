@@ -7,7 +7,7 @@ import { GestureResponderEvent } from 'react-native'
 
 type Props = {}
 
-const StyledCardContainer = ({ children }: PropsWithChildren<Props>) => {
+export const StyledCardContainer = ({ children }: PropsWithChildren<Props>) => {
   return (
     <Box
       // p={3}
