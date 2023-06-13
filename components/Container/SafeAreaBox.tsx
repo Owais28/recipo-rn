@@ -17,3 +17,15 @@ export default function SafeAreaBox({
     </Box>
   )
 }
+
+export const UnSafeAreaBox = ({
+  props,
+  style,
+  children,
+}: PropsWithChildren<Props & IBoxProps & InterfaceBoxProps>) => {
+  return (
+    <Box style={style} bgColor={'blueGray.50'} flex={1} {...props}>
+      {children}
+    </Box>
+  )
+}

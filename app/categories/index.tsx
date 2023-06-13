@@ -3,7 +3,7 @@ import SafeAreaBox from '../../components/Container/SafeAreaBox'
 
 import { Animated } from 'react-native'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
-import { HeaderWithBackButton } from '../../components/Headers'
+import { HeaderWithBackButton } from '../../components/headers/Headers'
 import DynamicCategoryCard from '../../components/Card/CategoryCard/DynamicCategoryCard'
 
 // Row in the column
@@ -21,7 +21,7 @@ const ListOfCategories = () => {
     <VStack flex={1}>
       <Animated.FlatList
         data={[...new Array(10)]}
-        renderItem={({ item }) => {
+        renderItem={() => {
           return (
             <GridRow>
               <DynamicCategoryCard
@@ -51,11 +51,19 @@ const DummySkeletonList = () => {
     <VStack flex={1}>
       <Animated.FlatList
         data={[...new Array(3)]}
-        renderItem={({ item }) => {
+        renderItem={() => {
           return (
             <GridRow>
-              <Skeleton height={200} width={'46%'} />
-              <Skeleton height={200} width={'46%'} />
+              <Skeleton
+                height={200}
+                width={'46%'}
+                startColor={'blueGray.200'}
+              />
+              <Skeleton
+                height={200}
+                width={'46%'}
+                startColor={'blueGray.200'}
+              />
             </GridRow>
           )
         }}

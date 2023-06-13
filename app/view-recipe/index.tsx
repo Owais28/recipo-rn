@@ -6,34 +6,88 @@ import {
   Flex,
   HStack,
   Image,
+  ITextProps,
   Skeleton,
-  Text,
+  theme,
   VStack,
 } from 'native-base'
-import React, { useEffect, useState } from 'react'
+import React, {
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { imgUrl } from '../../components/Card/TrendingRecipe/TrendingRecipeCard'
 import { AntDesign, MaterialIcons } from '@expo/vector-icons'
-import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated'
+import Animated, {
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated'
 import Colors from '../../constants/Colors'
 import RubikText from '../../components/Typography/TextRubik'
 import RubikMediumText from '../../components/Typography/TextRubikMedium'
 import { Alert, Dimensions, Share } from 'react-native'
-
+import { Animated as RAnimated } from 'react-native'
 import TabViewExample from '../../components/TabViewExample'
+import { LinearGradient } from 'expo-linear-gradient'
+import { IconProps } from '@expo/vector-icons/build/createIconSet'
+import { InterfaceTextProps } from 'native-base/lib/typescript/components/primitives/Text/types'
+import { StatusBar } from 'expo-status-bar'
+// import { convertStringNumberToNumber } from 'native-base/lib/typescript/utils/convertStringNumberToNumber'
 
-export default function ViewRecipePageIndex() {
-  const [isLoaded, setIsLoaded] = useState(false)
-  // const [index, setIndex] = React.useState(0)
-
-  // const animatedIndexValue = new Animated.Value(1)
-
+// const AnimatedImage = Animated.createAnimatedComponent(Image)
+export const useDummyIsLoaded = () => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 3000)
   }, [])
 
+  return [isLoaded, setIsLoaded]
+}
+
+export default function ViewRecipePageIndex() {
+  // const [index, setIndex] = React.useState(0)
+  // const imgHeight = useRef(new RAnimated.Value(3)).current
+  // const animatedValue = new RAnimated.Value(0)
+  // const animatedScrollY = useRef(new RAnimated.Value(0)).current
+  const [isLoaded] = useDummyIsLoaded()
+  const [isHeaderShow, setIsHeaderShown] = useState(false)
+
+  const ReAnimatedScrollY = useSharedValue(0)
+  const ReAnimatedScrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      ReAnimatedScrollY.value = event.contentOffset.y
+    },
+  })
+
+  // const animatedStyle = useAnimatedStyle(() => {
+  //   return {
+  //     shouldShow: ReAnimatedScrollY.value <= 200 ? false : true,
+  //   }
+  // })
+
+  const cachedFun = useCallback(() => {
+    switch (isHeaderShow) {
+      case true: {
+        if (ReAnimatedScrollY.value >= 200) setIsHeaderShown(false)
+        if (ReAnimatedScrollY.value <= 200) setIsHeaderShown(true)
+        break
+      }
+      case false: {
+        if (ReAnimatedScrollY.value <= 200) setIsHeaderShown(false)
+        if (ReAnimatedScrollY.value >= 200) setIsHeaderShown(true)
+        break
+      }
+      default:
+        break
+    }
+  }, [ReAnimatedScrollY.value, isHeaderShow])
+
   const SCREEN_HEIGHT = Dimensions.get('window').height
 
-  const onShare = async () => {
+  const _onShare = async () => {
     try {
       const result = await Share.share({
         message: 'https://recipo.vercel.app',
@@ -54,83 +108,88 @@ export default function ViewRecipePageIndex() {
     }
   }
 
+  // useEffect(() => {
+  // animatedScrollY.addListener(({ value }) => {
+  //   switch (isHeaderShow) {
+  //     case true: {
+  //       if (value >= 200) setIsHeaderShown(false)
+  //       if (value <= 200) setIsHeaderShown(true)
+  //       break
+  //     }
+  //     case false: {
+  //       if (value <= 200) setIsHeaderShown(false)
+  //       if (value >= 200) setIsHeaderShown(true)
+  //       break
+  //     }
+  //     default: {
+  //       break
+  //     }
+  //   }
+  //   if (value <= 200) return
+  //   else setIsHeaderShown(true)
+  // })
+  // cachedFun()
+  // }, [ReAnimatedScrollY.value])
+
   return (
     <Animated.View style={{ height: SCREEN_HEIGHT, flex: 1 }}>
-      {/*<StatusBar hidden={true} />*/}
+      {isHeaderShow ? (
+        <StatusBar animated backgroundColor={Colors.light.freshGreen} />
+      ) : (
+        <StatusBar animated translucent />
+      )}
       <Animated.ScrollView
-        scrollsToTop
+        // onScroll={RAnimated.event(
+        //   [{ nativeEvent: { contentOffset: { y: animatedScrollY } } }],
+        //   { useNativeDriver: true }
+        // )}
+        onScroll={ReAnimatedScrollHandler}
+        // onScrollBeginDrag={(event) => cachedFun()}
+        // onScrollEndDrag={(event) => cachedFun()}
+        // onResponderStart={(event) => cachedFun}
+        // onPointerEnter={(event) => cachedFun()}
+        // onScroll={(event) => console.log(event.nativeEvent.contentOffset.y)}
         style={{ flex: 1 }}
-        entering={SlideInDown}
-        exiting={SlideOutDown}
         showsVerticalScrollIndicator={false}>
-        {/* Image */}
-        <Skeleton h={300} isLoaded={isLoaded}>
-          <Box height={300} position={'relative'}>
-            <Image
-              source={{
-                uri: imgUrl,
-                height: 300,
-              }}
-              alt="image-of-a-recipe"
-            />
-            <Box
-              display={'flex'}
-              alignItems={'center'}
-              justifyContent={'center'}
-              position={'absolute'}
-              right={3}
-              top={10}
-              bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
-              w={9}
-              borderRadius={'full'}
-              height={9}
-              zIndex={2}>
-              <AntDesign
-                name="hearto"
-                size={15}
-                color={Colors.dark.tabIconSelected}
-              />
-            </Box>
-          </Box>
-        </Skeleton>
+        <ViewRecipePageIndex.Image />
         {/* <Animated.ScrollView> */}
 
         <VStack flexShrink={0} bgColor={'#E9E9E9'} pb={5}>
           {/* <Skeleton height={500}> */}
-          <Box borderRadius={'2xl'} mt={-5} bgColor={'#E9E9E9'} p={4} pb={0}>
-            <Skeleton.Text
-              // size={}
-              // size={'full'}
-              colorScheme={'blueGray'}
-              color={'amber.1000'}
-              startColor={'trueGray.300'}
-              rounded={'sm'}
-              lines={2}
-              _line={{ rounded: 'xs', height: 5 }}
-              isLoaded={isLoaded}>
-              <Text fontSize={'lg'} noOfLines={2} fontFamily={'Rubik-SemiBold'}>
-                Egg Sansd s sds
-              </Text>
-            </Skeleton.Text>
-          </Box>
-          {/* <Box> */}
-          <Button
-            position={'absolute'}
-            bg={'white'}
-            p={3}
-            borderRadius={'full'}
-            top={-42}
-            right={3}
-            _pressed={{
-              bgColor: 'warmGray.100',
-            }}>
-            <AntDesign
-              name="sharealt"
-              size={18}
-              color={Colors.primary1}
-              onPress={onShare}
-            />
-          </Button>
+          {/*<Box borderRadius={'2xl'} mt={-5} bgColor={'#E9E9E9'} p={4} pb={0}>*/}
+          {/*  <Skeleton.Text*/}
+          {/*    // size={}*/}
+          {/*    // size={'full'}*/}
+          {/*    colorScheme={'blueGray'}*/}
+          {/*    color={'amber.1000'}*/}
+          {/*    startColor={'trueGray.300'}*/}
+          {/*    rounded={'sm'}*/}
+          {/*    lines={2}*/}
+          {/*    _line={{ rounded: 'xs', height: 5 }}*/}
+          {/*    isLoaded={isLoaded}>*/}
+          {/*    <Text fontSize={'lg'} noOfLines={2} fontFamily={'Rubik-SemiBold'}>*/}
+          {/*      Egg Sansd s sds*/}
+          {/*    </Text>*/}
+          {/*  </Skeleton.Text>*/}
+          {/*</Box>*/}
+          {/*/!* <Box> *!/*/}
+          {/*<Button*/}
+          {/*  position={'absolute'}*/}
+          {/*  bg={'white'}*/}
+          {/*  p={3}*/}
+          {/*  borderRadius={'full'}*/}
+          {/*  top={-42}*/}
+          {/*  right={3}*/}
+          {/*  _pressed={{*/}
+          {/*    bgColor: 'warmGray.100',*/}
+          {/*  }}>*/}
+          {/*  <AntDesign*/}
+          {/*    name="sharealt"*/}
+          {/*    size={18}*/}
+          {/*    color={Colors.primary1}*/}
+          {/*    onPress={onShare}*/}
+          {/*  />*/}
+          {/*</Button>*/}
           {/* </Box> */}
 
           {/* Details */}
@@ -173,57 +232,6 @@ export default function ViewRecipePageIndex() {
               </VStack>
             </HStack>
             <Divider bgColor={'trueGray.300'} />
-            <Skeleton
-              startColor={'trueGray.300'}
-              isLoaded={isLoaded}
-              rounded={'full'}>
-              <Box
-                display={'flex'}
-                flexDir={'row'}
-                alignItems={'center'}
-                // justifyContent={'space-evenly'}
-                // mt={3}
-              >
-                <Flex
-                  direction="row"
-                  alignItems={'center'}
-                  // mr={4}
-                  // bgColor={'trueGray.600'}
-                  pr={10}
-                  // borderRadius={'sm'}
-                  // justifyContent={'space-between'}
-                >
-                  {/* <Skeleton> */}
-                  {/* <Flex alignItems={'center'} justifyContent={'center'}> */}
-                  <AntDesign name="star" size={15} color={'orange'} />
-                  {/* </Flex> */}
-                  <RubikMediumText color={'gray.700'} ml={1.5} fontSize={12}>
-                    4.5{' '}
-                    <RubikText ml={1} fontSize={9} color={'gray.400'}>
-                      {'('}
-                      {200} reviews{')'}
-                    </RubikText>
-                  </RubikMediumText>
-                  {/* </Skeleton> */}
-                </Flex>
-                <Flex direction="row" pr={10} alignItems={'center'}>
-                  {/* <Flex alignItems={'center'} justifyContent={'center'}> */}
-                  <AntDesign name="clockcircleo" size={13} color={'#a1a1aa'} />
-                  {/* </Flex> */}
-                  <RubikMediumText color={'gray.700'} ml={1.5} fontSize={12}>
-                    20 min
-                  </RubikMediumText>
-                </Flex>
-                <Flex direction="row" alignItems={'center'}>
-                  {/* <Flex alignItems={'center'} justifyContent={'center'}> */}
-                  <AntDesign name="clockcircleo" size={13} color={'#a1a1aa'} />
-                  {/* </Flex> */}
-                  <RubikMediumText color={'gray.700'} ml={1.5} fontSize={12}>
-                    Easy
-                  </RubikMediumText>
-                </Flex>
-              </Box>
-            </Skeleton>
           </VStack>
           {/* </Skeleton> */}
         </VStack>
@@ -332,3 +340,102 @@ export default function ViewRecipePageIndex() {
     </Animated.View>
   )
 }
+
+const AnimatedStyledImage = Animated.createAnimatedComponent(Image)
+
+ViewRecipePageIndex.Image = () => {
+  const [isLoaded] = useDummyIsLoaded()
+
+  return (
+    // <Skeleton minHeight={350} isLoaded={isLoaded}>
+    <Box position={'relative'}>
+      <AnimatedStyledImage
+        source={{
+          uri: imgUrl,
+        }}
+        height={400}
+        // height={imgHeight.interpolate({
+        //   inputRange: [3, 1],
+        //   outputRange: ['300','200']
+        // })}
+        alt="image-of-a-recipe"
+      />
+      <Flex
+        alignItems={'center'}
+        justifyContent={'center'}
+        position={'absolute'}
+        right={3}
+        top={10}
+        bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
+        w={9}
+        borderRadius={'full'}
+        height={9}
+        zIndex={2}>
+        <AntDesign
+          name="hearto"
+          size={15}
+          color={Colors.dark.tabIconSelected}
+        />
+      </Flex>
+      <Box position={'absolute'} bottom={0} left={0} right={0}>
+        <LinearGradient
+          colors={['transparent', theme.colors.trueGray['800']]}
+          style={{ paddingTop: 70 }}>
+          <VStack px={3} style={{ gap: 3 }} pb={5}>
+            <RubikMediumText
+              lineHeight={'sm'}
+              pr={5}
+              fontSize={'2xl'}
+              color={'blue.50'}>
+              Grilled Meat Skewer Grilled Meat Skewer
+            </RubikMediumText>
+            <ViewRecipePageIndex.DetailsTop isLoaded={isLoaded} />
+          </VStack>
+        </LinearGradient>
+      </Box>
+    </Box>
+    // </Skeleton>
+  )
+}
+
+const StyledRubikTextMedium: FC<
+  PropsWithChildren<ITextProps & InterfaceTextProps>
+> = ({ children, ...props }) => (
+  <RubikText color={'blueGray.200'} ml={2} fontSize={12} {...props}>
+    {children}
+  </RubikText>
+)
+
+type MyIconProps = {
+  name: string & IconProps
+}
+const MyAntDesignIcon = ({ name }: MyIconProps) => (
+  <AntDesign
+    name={!name ? 'clockcircleo' : name}
+    size={15}
+    color={Colors.light.freshGreen}
+  />
+)
+
+ViewRecipePageIndex.DetailsTop = ({ isLoaded }) => {
+  return (
+    // <Skeleton startColor={'trueGray.300'} isLoaded={isLoaded} rounded={'full'}>
+    <HStack px={1} alignItems={'center'}>
+      <HStack alignItems={'center'} pr={9}>
+        <MyAntDesignIcon name={'hearto'} />
+        <StyledRubikTextMedium>4.5 </StyledRubikTextMedium>
+      </HStack>
+      <HStack alignItems={'center'} pr={9}>
+        <MyAntDesignIcon name="clockcircleo" />
+        <StyledRubikTextMedium>20 min</StyledRubikTextMedium>
+      </HStack>
+      <HStack alignItems={'center'} pr={9}>
+        <MyAntDesignIcon name="clockcircleo" />
+        <StyledRubikTextMedium>Easy</StyledRubikTextMedium>
+      </HStack>
+    </HStack>
+    // </Skeleton>
+  )
+}
+
+// TODO: uncomment skeletons

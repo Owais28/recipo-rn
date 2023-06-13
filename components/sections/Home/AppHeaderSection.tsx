@@ -5,13 +5,7 @@ import { TouchableOpacity } from 'react-native'
 
 const AppHeaderSection = () => {
   return (
-    <Box
-      px={3}
-      pt={2}
-      pb={1}
-      // borderBottomWidth={1}
-      // borderBottomColor={'green.700'}
-    >
+    <Box px={3} pt={2} pb={1}>
       <HStack alignItems={'center'} justifyContent={'space-between'}>
         <TouchableOpacity
           style={{

@@ -3,7 +3,7 @@ import { Box, HStack, Image, Pressable, theme, VStack } from 'native-base'
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 import { imgUrl } from './TrendingRecipe/TrendingRecipeCard'
 import { useRouter } from 'expo-router'
-import { GestureResponderEvent } from 'react-native'
+import { GestureResponderEvent, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import RubikSemiBoldText from '../Typography/TextRubikSemiBold'
 import RubikText from '../Typography/TextRubik'
@@ -34,8 +34,9 @@ const HorizontalPopularRecipeCard = () => {
   const router = useRouter()
 
   return (
-    <Pressable
-      onPress={(_e: GestureResponderEvent) => router.push('/view-recipe')}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={(_event) => router.push('view-recipe')}>
       {/* <Skeleton height={350} isLoaded={isLoaded}> */}
       <HorizontalStyledCardContainer>
         {/* Image */}
@@ -125,7 +126,7 @@ const HorizontalPopularRecipeCard = () => {
         </Box>
       </HorizontalStyledCardContainer>
       {/* </Skeleton> */}
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 

@@ -1,9 +1,9 @@
-import { Box, Flex, Image, Pressable, Text } from 'native-base'
+import { Box, Flex, Image, Text } from 'native-base'
 import { PropsWithChildren } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
 import { AntDesign } from '@expo/vector-icons'
-import { GestureResponderEvent } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 type Props = {}
 
@@ -58,11 +58,9 @@ const TrendingRecipeCard = ({}: Props) => {
   // }
 
   return (
-    <Pressable
-      onPress={(_e: GestureResponderEvent) => router.push('/view-recipe')}>
-      {/* <Skeleton height={350} isLoaded={isLoaded}> */}
-      <StyledCardContainer>
-        {/* Image */}
+    <StyledCardContainer>
+      {/* Image */}
+      <TouchableOpacity onPress={(_event) => router.push('view-recipe')}>
         <Box overflow={'hidden'}>
           {/* <AspectRatio w='100%' ratio={1} overflow={'hidden'} height={200}> */}
           <Image
@@ -73,19 +71,23 @@ const TrendingRecipeCard = ({}: Props) => {
           />
           {/* </AspectRatio> */}
         </Box>
+      </TouchableOpacity>
+      {/* Card Details */}
 
-        {/* Card Details */}
-        <Box
-          position={'absolute'}
-          bottom={0}
-          // bg={{
-          //   // linearGradient: {
-          //   //   colors: ['black', 'white'],
-          //   //   start: [0, 0],
-          //   //   end: [1, 0]
-          //   // }
-          // }}
-          width={'100%'}>
+      <Box
+        position={'absolute'}
+        bottom={0}
+        // bg={{
+        //   // linearGradient: {
+        //   //   colors: ['black', 'white'],
+        //   //   start: [0, 0],
+        //   //   end: [1, 0]
+        //   // }
+        // }}
+        width={'100%'}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={(_event) => router.push('view-recipe')}>
           <LinearGradient
             colors={['transparent', 'black']}
             style={{ paddingTop: 70 }}>
@@ -153,23 +155,24 @@ const TrendingRecipeCard = ({}: Props) => {
             </Box>
           </LinearGradient>
           {/* </BlurView> */}
-        </Box>
-        <Box
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          position={'absolute'}
-          right={3}
-          top={3}
-          bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
-          w={9}
-          borderRadius={'full'}
-          height={9}>
-          <AntDesign name="hearto" size={15} color="white" />
-        </Box>
-      </StyledCardContainer>
-      {/* </Skeleton> */}
-    </Pressable>
+        </TouchableOpacity>
+      </Box>
+
+      <Box
+        display={'flex'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        position={'absolute'}
+        right={3}
+        top={3}
+        bgColor={'hsla(137.14,8.97%,30.59%,0.7)'}
+        w={9}
+        borderRadius={'full'}
+        height={9}>
+        <AntDesign name="hearto" size={15} color="white" />
+      </Box>
+    </StyledCardContainer>
+    // </TouchableOpacity>
   )
 }
 
