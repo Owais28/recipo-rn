@@ -7,7 +7,7 @@ import {
   theme,
   VStack,
 } from 'native-base'
-import { imgUrl } from '../../Card/TrendingRecipe/TrendingRecipeCard'
+
 import { AntDesign } from '@expo/vector-icons'
 import Colors from '../../../constants/Colors'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -90,7 +90,7 @@ export const RecipeImageWithTitleAndInfo: FC<
     <Box position={'relative'}>
       <AnimatedStyledImage
         source={{
-          uri: imgUrl,
+          uri: props.imgUri,
         }}
         height={400}
         // height={imgHeight.interpolate({
@@ -122,7 +122,12 @@ export const RecipeImageWithTitleAndInfo: FC<
           style={{ paddingTop: 70 }}>
           <VStack px={3} style={{ gap: 3 }} pb={5}>
             <Title title={props.recipeTitle} />
-            <Info isLoaded={props.isLoaded} />
+            <Info
+              ratings={props.ratings}
+              preparationTime={props.preparationTime}
+              difficulty={props.difficulty}
+              isLoaded={props.isLoaded}
+            />
           </VStack>
         </LinearGradient>
       </Box>
